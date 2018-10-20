@@ -1,0 +1,16 @@
+.sign-in-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px;
+  margin: auto;
+
+  .message {
+    text-align: left;
+    padding-bottom: 16px;
+    color: gray;
+  }
+
+  .sign-in-button {
+    margin: 16px 0px;
+  }
+}

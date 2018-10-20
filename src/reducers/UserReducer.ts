@@ -1,5 +1,5 @@
-import { AuthEnum } from 'src/enums/AuthEnum';
-import { UserModel } from 'src/models/UserModel';
+import { AuthEnum } from '../enums/AuthEnum';
+import { UserModel } from '../models/UserModel';
 
 export const userReducer = (state: UserModel, action: any): UserModel => {
   switch (action.type) {
