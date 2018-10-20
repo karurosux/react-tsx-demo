@@ -1,3 +1,5 @@
+$error-message-border-radius: 4px;
+
 .sign-in-box {
   width: 100%;
   max-width: 400px;
@@ -12,5 +14,15 @@
 
   .sign-in-button {
     margin: 16px 0px;
+  }
+
+  .error-message {
+    color: white;
+    background-color: #ce3000;
+    padding: 16px;
+    margin: 16px 0px;
+    -webkit-border-radius: $error-message-border-radius;
+    -moz-border-radius: $error-message-border-radius;
+    border-radius: $error-message-border-radius;
   }
 }

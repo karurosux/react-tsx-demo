@@ -13,13 +13,15 @@ const signInContainer = (props: any) => {
   return (
     <div className="sign-in-container">
       <div className="box-container">
-        <SignInBoxPresentation onSubmit={signIn(props)} />
+        <SignInBoxPresentation errorMessage={props.errorMessage} onSubmit={signIn(props)} />
       </div>
     </div>
   );
 };
 
-const mapStateToProps = (state: any) => ({});
+const mapStateToProps = (state: any) => ({
+  errorMessage: state.errorMessage
+});
 const mapDispatchToProps = (dispatch: any) => ({
   signIn(email: string) {
     dispatch(signInAction(email));

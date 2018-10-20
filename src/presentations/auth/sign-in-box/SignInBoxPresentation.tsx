@@ -15,24 +15,37 @@ const handleInputChange = (name: string) => (e: any) => {
   values[name] = e.target.value;
 };
 
-export const SignInBoxPresentation = ({ onSubmit = (e: any) => {} }) => (
-  <Card className="sign-in-box">
-    <Typography className="message">
-      Use <b>Sincere@april.biz</b> email for login.{' '}
-    </Typography>
+export const SignInBoxPresentation = ({ onSubmit = (e: any) => {}, errorMessage = '' }) => {
+  console.log('error message: ', errorMessage);
+  return (
+    <Card className="sign-in-box">
+      <Typography className="message">
+        Use <b>Sincere@april.biz</b> email for login.{' '}
+      </Typography>
 
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <EmailFieldPresentation required={true} onChange={handleInputChange('email')} />
+      {errorMessage === '' ? (
+        ''
+      ) : (
+        <Typography
+          hidden={errorMessage === ''}
+          children={errorMessage}
+          className="error-message"
+        />
+      )}
 
-      <Button
-        className="sign-in-button"
-        variant="contained"
-        color="primary"
-        fullWidth={true}
-        type="submit"
-      >
-        Sign In
-      </Button>
-    </form>
-  </Card>
-);
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <EmailFieldPresentation required={true} onChange={handleInputChange('email')} />
+
+        <Button
+          className="sign-in-button"
+          variant="contained"
+          color="primary"
+          fullWidth={true}
+          type="submit"
+        >
+          Sign In
+        </Button>
+      </form>
+    </Card>
+  );
+};
