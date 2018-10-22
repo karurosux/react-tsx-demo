@@ -16,7 +16,6 @@ const handleInputChange = (name: string) => (e: any) => {
 };
 
 export const SignInBoxPresentation = ({ onSubmit = (e: any) => {}, errorMessage = '' }) => {
-  console.log('error message: ', errorMessage);
   return (
     <Card className="sign-in-box">
       <Typography className="message">

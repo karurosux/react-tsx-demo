@@ -8,6 +8,7 @@ import { DashboardContainer } from './containers/layout/dashboard/DashboardConta
 import { reducers } from './reducers';
 
 import './App.css';
+import { ProtectedRoutePresentation } from './presentations/shared/protected-route/ProtectedRoutePresentation';
 
 const store = createStore(reducers, applyMiddleware(thunk.default));
 
@@ -18,8 +19,13 @@ class App extends React.Component {
         <Provider store={store}>
           <BrowserRouter>
             <Switch>
-              <Route path="/" component={SignInContainer} />
-              <Route path="/dashboard" component={DashboardContainer} />
+              <Route exact={true} path="/" component={SignInContainer} />
+              <ProtectedRoutePresentation
+                exact={true}
+                path="/dashboard"
+                redirectTo="/"
+                component={DashboardContainer}
+              />
             </Switch>
           </BrowserRouter>
         </Provider>

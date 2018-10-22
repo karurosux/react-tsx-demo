@@ -1,8 +1,31 @@
 .dashboard-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+
   .drawer {
-    background-color: aquamarine;
+    width: 400px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
   .content {
-    background-color: coral;
+    flex: 1;
+
+    .toolbar {
+      background-color: #4654b0;
+      padding: 16px;
+      box-shadow: 0 0px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      min-height: 32px;
+      max-height: 32px;
+
+      h1.toolbar-title {
+        color: white;
+        padding: 0px;
+        margin: 0px;
+        font-size: 28px;
+      }
+    }
   }
 }

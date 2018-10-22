@@ -1,5 +1,6 @@
 import { AuthEnum } from '../enums/AuthEnum';
 import { AuthSource } from '../sources/AuthSource';
+import { navigateTo } from './NavigateAction';
 
 export const signInAction = (email: string) => (dispatch: any) => {
   AuthSource.signIn(email)
@@ -13,6 +14,7 @@ export const signInAction = (email: string) => (dispatch: any) => {
         type: AuthEnum.SIGN_IN,
         ...res[0]
       });
+      dispatch(navigateTo('/dashboard'));
     });
 };
 
