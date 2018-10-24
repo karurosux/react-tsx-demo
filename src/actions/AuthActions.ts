@@ -1,5 +1,6 @@
 import { AuthEnum } from '../enums/AuthEnum';
 import { AuthSource } from '../sources/AuthSource';
+import { emailNotFoundAction } from './ErrorMessageActions';
 import { navigateTo } from './NavigateAction';
 
 export const signInAction = (email: string) => (dispatch: any) => {
@@ -16,11 +17,4 @@ export const signInAction = (email: string) => (dispatch: any) => {
       });
       dispatch(navigateTo('/dashboard'));
     });
-};
-
-export const emailNotFoundAction = (email: string) => {
-  return {
-    type: AuthEnum.EMAIL_NOT_FOUND,
-    message: `The email ${email} was not found, please try another.`
-  };
 };

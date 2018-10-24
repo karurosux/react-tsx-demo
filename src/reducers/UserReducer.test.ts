@@ -10,4 +10,12 @@ describe('UserReducer', () => {
     });
     expect(result.name).toBe('Carlos');
   });
+
+  it('should return state as default.', () => {
+    expect(userReducer({ name: 'Carlos' } as UserModel, {})).toEqual({ name: 'Carlos' });
+  });
+
+  it('should return empty object as default if no state.', () => {
+    expect((userReducer as any)(undefined, {})).toEqual({});
+  });
 });

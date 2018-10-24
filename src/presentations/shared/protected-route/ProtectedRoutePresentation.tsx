@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
 const renderComponent = (Component: any, redirectTo: string, user: any) => (props: any) =>
-  !_.isEmpty(Component) ? <Component {...props} /> : <Redirect to={redirectTo || '/login'} />;
+  !_.isEmpty(user) ? <Component {...props} /> : <Redirect to={redirectTo || '/login'} />;
 
 const protectedRoutePresentation = (props: any) => {
   const { component, redirectTo, user, ...rest } = props;
