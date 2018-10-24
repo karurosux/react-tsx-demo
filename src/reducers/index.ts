@@ -1,11 +1,14 @@
-import { combineReducers, ReducersMapObject } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import { AppStateModel } from 'src/models/AppStateModel';
 import { errorMessageReducer } from './ErrorMessageReducer';
 import { userReducer } from './UserReducer';
 
-const appStateModel: ReducersMapObject<AppStateModel> = {
-  user: userReducer,
-  errorMessage: errorMessageReducer
-};
-
-export const reducers = combineReducers<AppStateModel>(appStateModel);
+export const reducers = (
+  state: AppStateModel = {} as AppStateModel,
+  action: any
+) =>
+  ({
+    user: userReducer(state.user, action),
+    errorMessage: errorMessageReducer(state.errorMessage, action),
+    routing: routerReducer(state.routing, action)
+  } as AppStateModel);
