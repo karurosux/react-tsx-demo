@@ -1,10 +1,18 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router';
 import { fetchPosts } from '../../../actions/PostsActions';
 import { AppStateModel } from '../../../models/AppStateModel';
+import { PostModel } from '../../../models/PostModel';
+import { HomeContainer } from '../../module/home/HomeContainer';
 import './DashboardContainer.scss';
 
-const dashboardContainer = class extends React.Component<any, any> {
+interface IProps {
+  posts: PostModel[];
+  fetchPosts: () => void;
+}
+
+const dashboardContainer = class extends React.Component<IProps, any> {
   public componentWillMount() {
     this.props.fetchPosts();
   }
@@ -15,14 +23,14 @@ const dashboardContainer = class extends React.Component<any, any> {
         <div className="drawer">
           <div className="drawer-head">&nbsp;</div>
         </div>
-        <div className="content">
+        <div className="drawer-content">
           <div className="toolbar">
-            <h1 className="toolbar-title"> Hola </h1>
-            {this.props.posts.map((i: any) => (
-              <p>
-                {i.title}: {i.body}
-              </p>
-            ))}
+            <h1 className="toolbar-title"> Title </h1>
+          </div>
+          <div className="content">
+            <Switch>
+              <Route path="/" component={HomeContainer} />
+            </Switch>
           </div>
         </div>
       </div>

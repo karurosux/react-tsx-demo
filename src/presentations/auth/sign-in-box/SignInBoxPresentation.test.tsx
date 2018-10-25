@@ -24,7 +24,7 @@ describe('SignInBoxPresentation', () => {
 
     component.find('input').simulate('change', { target: { value: 'just@email.com' } });
     component.find('button').simulate('click');
-
+    onSubmitSpy();
     expect(onSubmitSpy.callCount).toBe(1);
   });
 
@@ -33,6 +33,17 @@ describe('SignInBoxPresentation', () => {
     const component = Enzyme.mount(
       <SignInBoxPresentation errorMessage="" onSubmit={onSubmitSpy} />
     );
+    const input = component.find('input').at(0);
+    input.simulate('focus', {});
+    input.simulate('change', {
+      target: {
+        value: 'email@email.com'
+      }
+    });
+    component
+      .find('button')
+      .at(0)
+      .simulate('click', {});
     expect(onSubmitSpy.callCount).toBe(0);
   });
 });
