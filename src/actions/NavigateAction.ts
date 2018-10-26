@@ -1,11 +1,11 @@
 import { push } from 'react-router-redux';
-import { NavigateEnum } from '../enums/NavigateEnum';
+import { ActionsEnum } from '../enums/ActionsEnum';
 
 export const navigateTo = (route: string) => {
   return (dispatch: any) => {
     dispatch(push({ pathname: route }));
     dispatch({
-      type: NavigateEnum.NAVIGATE_TO,
+      type: ActionsEnum.NAVIGATE_TO,
       route
     });
   };

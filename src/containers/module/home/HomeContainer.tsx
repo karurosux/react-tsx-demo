@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../../../actions/PostsActions';
+import { fetchPosts, openPostAction } from '../../../actions/PostsActions';
 import { AppStateModel } from '../../../models/AppStateModel';
 import { PostModel } from '../../../models/PostModel';
 import { PostsListPresentation } from '../../../presentations/post/posts-list/PostsListPresentation';
@@ -8,6 +8,7 @@ import { PostsListPresentation } from '../../../presentations/post/posts-list/Po
 interface IProps {
   posts: PostModel[];
   fetchPosts: () => void;
+  openPost: (post: PostModel) => void;
 }
 
 const homeContainer = class extends React.Component<IProps, any> {
@@ -18,9 +19,15 @@ const homeContainer = class extends React.Component<IProps, any> {
   public render() {
     return (
       <div className="home-container">
-        <PostsListPresentation posts={this.props.posts} />
+        <PostsListPresentation onItemClick={this.handlePostClick()} posts={this.props.posts} />
       </div>
     );
+  }
+
+  public handlePostClick() {
+    return (post: PostModel) => {
+      this.props.openPost(post);
+    };
   }
 };
 
@@ -33,6 +40,9 @@ const mapDispatchToProps = (dispatch: any) =>
   ({
     fetchPosts() {
       dispatch(fetchPosts());
+    },
+    openPost(post: PostModel) {
+      dispatch(openPostAction(post));
     }
   } as IProps);
 

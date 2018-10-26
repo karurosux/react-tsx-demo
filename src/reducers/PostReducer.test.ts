@@ -1,4 +1,4 @@
-import { PostsEnum } from '../enums/PostsEnum';
+import { ActionsEnum } from '../enums/ActionsEnum';
 import { PostModel } from '../models/PostModel';
 import { postsReducer } from './PostsReducer';
 
@@ -13,7 +13,7 @@ describe('PostsReducer', () => {
       }
     ];
     const result = postsReducer([], {
-      type: PostsEnum.FETCH_POSTS,
+      type: ActionsEnum.FETCH_POSTS,
       posts
     });
     expect(result).toHaveLength(1);

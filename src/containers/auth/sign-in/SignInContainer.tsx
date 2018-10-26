@@ -4,12 +4,17 @@ import { signInAction } from '../../../actions/AuthActions';
 import { SignInBoxPresentation } from '../../../presentations/auth/sign-in-box/SignInBoxPresentation';
 import './SignInContainer.scss';
 
-const signIn = (props: any) => (e: any) => {
+interface IProps {
+  errorMessage: string;
+  signIn: (email: string) => void;
+}
+
+const signIn = (props: IProps) => (e: any) => {
   e.event.preventDefault();
   props.signIn(e.values.email);
 };
 
-const signInContainer = (props: any) => {
+const signInContainer = (props: IProps) => {
   return (
     <div className="sign-in-container">
       <div className="box-container">
@@ -19,14 +24,17 @@ const signInContainer = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
-  errorMessage: state.errorMessage
-});
-const mapDispatchToProps = (dispatch: any) => ({
-  signIn(email: string) {
-    dispatch(signInAction(email));
-  }
-});
+const mapStateToProps = (state: any) =>
+  ({
+    errorMessage: state.errorMessage
+  } as IProps);
+
+const mapDispatchToProps = (dispatch: any) =>
+  ({
+    signIn(email: string) {
+      dispatch(signInAction(email));
+    }
+  } as IProps);
 
 export const SignInContainer = connect(
   mapStateToProps,

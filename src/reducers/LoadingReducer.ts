@@ -1,10 +1,10 @@
-import { LoadingEnum } from '../enums/LoadingEnum';
+import { ActionsEnum } from '../enums/ActionsEnum';
 
 export const loadingReducer = (state: boolean, action: any) => {
   switch (action.type) {
-    case LoadingEnum.TRUE:
+    case ActionsEnum.LOADING_TRUE:
       return true;
-    case LoadingEnum.FALSE:
+    case ActionsEnum.LOADING_FALSE:
       return false;
     default:
       return state;

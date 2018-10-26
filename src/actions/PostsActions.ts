@@ -1,8 +1,10 @@
 import * as _ from 'lodash';
-import { PostsEnum } from '../enums/PostsEnum';
+import { ActionsEnum } from '../enums/ActionsEnum';
 import { AppStateModel } from '../models/AppStateModel';
+import { PostModel } from '../models/PostModel';
 import { PostSource } from '../sources/PostSource';
 import { unauthenticatedErrorMessageAction } from './ErrorMessageActions';
+import { navigateTo } from './NavigateAction';
 
 export const fetchPosts = () => {
   return (dispatch: any, getState: any) => {
@@ -14,9 +16,22 @@ export const fetchPosts = () => {
 
     PostSource.fetchPosts(state.user.id).then(posts => {
       dispatch({
-        type: PostsEnum.FETCH_POSTS,
+        type: ActionsEnum.FETCH_POSTS,
         posts
       });
+    });
+  };
+};
+
+export const openPostAction = (post: PostModel) => {
+  return (dispatch: any) => {
+    PostSource.fetchPostComments(post.id).then(comments => {
+      dispatch({
+        type: ActionsEnum.OPEN_POST,
+        post,
+        comments
+      });
+      dispatch(navigateTo('/dashboard/post'));
     });
   };
 };

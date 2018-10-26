@@ -4,6 +4,8 @@
   .title {
     font-size: 16px;
   }
-  .body {
+
+  &:hover {
+    cursor: pointer;
   }
 }

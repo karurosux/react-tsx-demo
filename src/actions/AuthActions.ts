@@ -1,5 +1,6 @@
-import { AuthEnum } from '../enums/AuthEnum';
+import { ActionsEnum } from '../enums/ActionsEnum';
 import { AuthSource } from '../sources/AuthSource';
+import { SessionSource } from '../sources/SessionSource';
 import { emailNotFoundAction } from './ErrorMessageActions';
 import { navigateTo } from './NavigateAction';
 
@@ -11,8 +12,10 @@ export const signInAction = (email: string) => (dispatch: any) => {
         return dispatch(emailNotFoundAction(email));
       }
 
+      SessionSource.setSession(res[0]);
+
       dispatch({
-        type: AuthEnum.SIGN_IN,
+        type: ActionsEnum.SIGN_IN,
         ...res[0]
       });
       dispatch(navigateTo('/dashboard'));

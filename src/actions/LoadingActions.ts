@@ -1,9 +1,9 @@
-import { LoadingEnum } from '../enums/LoadingEnum';
+import { ActionsEnum } from '../enums/ActionsEnum';
 
 export const setLoading = (loading: boolean) => {
   if (loading) {
-    return { type: LoadingEnum.TRUE };
+    return { type: ActionsEnum.LOADING_TRUE };
   } else {
-    return { type: LoadingEnum.FALSE };
+    return { type: ActionsEnum.LOADING_FALSE };
   }
 };
