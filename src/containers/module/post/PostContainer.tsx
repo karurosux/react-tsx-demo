@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { CommentModel } from 'src/models/CommentModel';
-import { PostCardPresentation } from 'src/presentations/post/post-card/PostCardPresentation';
 import { AppStateModel } from '../../../models/AppStateModel';
+import { CommentModel } from '../../../models/CommentModel';
 import { PostModel } from '../../../models/PostModel';
+import { PostCardPresentation } from '../../../presentations/post/post-card/PostCardPresentation';
 
 interface IProps {
   post: PostModel;
@@ -12,10 +12,20 @@ interface IProps {
 
 const postContainer = class extends React.Component<IProps, any> {
   public render() {
-    const { post } = this.props;
+    const { post, comments } = this.props;
     return (
       <div className="post-detail">
         <PostCardPresentation title={post.title} body={post.body} />
+        <ul className="comments">
+          {comments.map(c => (
+            <li>
+              <b>
+                {c.name}({c.email}
+              </b>
+              ): {c.body}
+            </li>
+          ))}
+        </ul>
       </div>
     );
   }
@@ -28,8 +38,8 @@ const postContainer = class extends React.Component<IProps, any> {
 
 const mapStateToProps = (state: AppStateModel) =>
   ({
-    post: {} as PostModel,
-    comments: []
+    post: state.selectedPost,
+    comments: state.selectedPostComments
   } as IProps);
 
 const mapDispatchToProps = (dispatch: any) => ({} as IProps);

@@ -2,6 +2,11 @@ import { ActionsEnum } from '../enums/ActionsEnum';
 import { UserModel } from '../models/UserModel';
 import { userReducer } from './UserReducer';
 
+(global as any).localStorage = {
+  getItem(key: string) {},
+  setItem(key: string, value: string) {}
+};
+
 describe('UserReducer', () => {
   it('should return the authenticated user.', () => {
     const result = userReducer({} as UserModel, {

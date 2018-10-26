@@ -1,5 +1,5 @@
-import { ActionsEnum } from 'src/enums/ActionsEnum';
-import { PageInfoModel } from 'src/models/PageInfoModel';
+import { ActionsEnum } from '../enums/ActionsEnum';
+import { PageInfoModel } from '../models/PageInfoModel';
 import { pageInfoReducer } from './PageInfoReducer';
 
 describe('PageInfoReducer', () => {
@@ -12,6 +12,6 @@ describe('PageInfoReducer', () => {
       type: ActionsEnum.SET_PAGE_INFO,
       ...pageInfo
     });
-    expect(result).toEqual(pageInfo);
+    expect(result).toHaveProperty('title', 'Hola');
   });
 });

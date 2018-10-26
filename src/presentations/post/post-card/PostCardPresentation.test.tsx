@@ -41,7 +41,7 @@ describe('PostCardPresentation', () => {
     const component = Enzyme.mount(<PostCardPresentation />);
     expect(
       component
-        .find('.title')
+        .find('h1.title')
         .at(0)
         .text()
     ).toBe('No title');
@@ -51,7 +51,7 @@ describe('PostCardPresentation', () => {
     const component = Enzyme.mount(<PostCardPresentation />);
     expect(
       component
-        .find('.body')
+        .find('p.body')
         .at(0)
         .text()
     ).toBe('No body');

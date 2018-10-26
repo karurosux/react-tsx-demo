@@ -1,4 +1,3 @@
-import { SessionSource } from 'src/sources/SessionSource';
 import { ActionsEnum } from '../enums/ActionsEnum';
 import { UserModel } from '../models/UserModel';
 
@@ -7,7 +6,7 @@ export const userReducer = (state: UserModel, action: any): UserModel => {
     case ActionsEnum.SIGN_IN:
       return singinReducer(state, action);
     default:
-      return SessionSource.getSession() || state || ({} as UserModel);
+      return state || ({} as UserModel);
   }
 };
 
